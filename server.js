@@ -23,13 +23,11 @@ app.get("/api/v1/products", (req, res) => {
 app.get("api/v1/products/search", (req, res) => {
   const key = req.query.key;
   const value = req.query.key;
-  const sortBy = req.query.sort || "id";
-  const order = req.query.order || "ASC";
   if (!key || !value) {
     res.status(400).json({ error: "invalid search query" });
     return;
   }
-  const products = productsService.search(key, value, sortBy, order);
+  const products = productsService.search(key);
   res.json(products);
 });
 
